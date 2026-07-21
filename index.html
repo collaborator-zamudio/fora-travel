@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Book Better Travel — With Grant Zamudio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+:root{--ink:#1C1A17;--ink-mid:#4A4540;--muted:#8A8278;--cream:#FAF8F3;--surface:#F2EFE8;--border:#E5E0D5;--white:#FFFFFF;--gold:#B8860B;--gold-light:#FEF8E8;--gold-dark:#8B6508;--green:#1A5C3A;--green-light:#EAF2ED;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;}
+.hero{background:var(--ink);color:#fff;padding:72px 32px 80px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 0%,rgba(184,134,11,0.18) 0%,transparent 65%);pointer-events:none;}
+.hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:20px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,8vw,68px);font-weight:300;line-height:1.05;margin-bottom:20px;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.6);max-width:520px;margin:0 auto 40px;line-height:1.8;font-weight:300;}
+.hero-chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;}
+.chip{padding:8px 18px;border-radius:100px;font-size:12px;font-weight:600;}
+.chip-gold{background:var(--gold);color:#fff;}
+.chip-out{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);}
+.hero-cta{display:inline-block;background:var(--gold);color:#fff;padding:18px 44px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px;cursor:pointer;border:none;font-family:'Inter',sans-serif;}
+.hero-cta-sub{font-size:12px;color:rgba(255,255,255,0.4);margin-top:12px;letter-spacing:1px;}
+.sla-band{background:var(--gold);color:#fff;padding:16px 32px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center;}
+.sla-text{font-size:13px;font-weight:600;}
+.section{padding:72px 32px;}
+.section-alt{background:var(--surface);}
+.inner{max-width:800px;margin:0 auto;}
+.inner-wide{max-width:1000px;margin:0 auto;}
+.eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px;display:block;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,44px);font-weight:400;line-height:1.15;margin-bottom:14px;}
+.sec-desc{font-size:14px;color:var(--ink-mid);line-height:1.85;max-width:600px;font-weight:300;margin-bottom:40px;}
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:24px;padding:28px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.step:last-child{border-bottom:none;}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-body h4{font-size:16px;font-weight:700;margin-bottom:6px;}
+.step-body p{font-size:13.5px;color:var(--ink-mid);line-height:1.75;}
+.step-tag{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;background:var(--gold-light);color:var(--gold-dark);}
+.perks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:32px;}
+@media(max-width:640px){.perks-grid{grid-template-columns:1fr;}}
+.perk{background:var(--white);padding:32px 24px;text-align:center;}
+.perk-icon{font-size:32px;margin-bottom:14px;}
+.perk-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:8px;}
+.perk-desc{font-size:13px;color:var(--ink-mid);line-height:1.65;}
+.perk-val{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.5px;text-transform:uppercase;}
+.example{background:var(--ink);color:#fff;border-radius:14px;padding:40px;margin-bottom:32px;}
+.ex-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;}
+.ex-hotel{font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;margin-bottom:28px;opacity:0.9;}
+.ex-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:560px){.ex-cols{grid-template-columns:1fr;}}
+.ex-col{background:rgba(255,255,255,0.07);border-radius:10px;padding:20px;}
+.ex-col-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:0.5;margin-bottom:12px;font-weight:700;}
+.ex-row{font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;}
+.ex-row:last-child{border-bottom:none;}
+.ex-row .lbl{opacity:0.6;}
+.ex-row .val{font-weight:600;}
+.ex-row .val.gold{color:#D4A843;}
+.form-wrap{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.08);}
+.form-head{background:var(--ink);color:#fff;padding:32px 36px;}
+.form-head h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:8px;}
+.form-head p{font-size:13px;opacity:0.6;line-height:1.6;}
+.form-body{padding:36px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr;}}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group.full{grid-column:1/-1;}
+.form-group label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);}
+.form-group input,.form-group select,.form-group textarea{padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);background:var(--cream);outline:none;transition:border-color 0.2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);background:#fff;}
+.form-group textarea{resize:vertical;min-height:80px;}
+.loyalty-section{background:var(--gold-light);border:1px solid #E8D080;border-radius:10px;padding:20px;margin-bottom:16px;}
+.ls-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gold-dark);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.loyalty-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:560px){.loyalty-grid{grid-template-columns:1fr;}}
+.loyalty-field{display:flex;flex-direction:column;gap:4px;}
+.loyalty-field label{font-size:10px;font-weight:600;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.8px;}
+.loyalty-field input{padding:9px 12px;border:1.5px solid #D4B060;border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;color:var(--ink);outline:none;}
+.loyalty-field input:focus{border-color:var(--gold);}
+.form-submit{width:100%;padding:18px;background:var(--gold);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;margin-top:8px;}
+.form-note{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;}
+.success-state{display:none;text-align:center;padding:60px 36px;}
+.success-state .s-icon{font-size:48px;margin-bottom:20px;}
+.success-state h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;margin-bottom:12px;}
+.success-state p{font-size:14px;color:var(--ink-mid);line-height:1.75;max-width:400px;margin:0 auto 24px;}
+.success-detail{background:var(--gold-light);border:1px solid #E8D080;border-radius:10px;padding:20px 24px;max-width:400px;margin:0 auto;text-align:left;}
+.sd-row{font-size:13px;padding:6px 0;border-bottom:1px dashed var(--border);display:flex;justify-content:space-between;}
+.sd-row:last-child{border-bottom:none;}
+.sd-lbl{color:var(--muted);}
+.sd-val{font-weight:600;color:var(--gold-dark);}
+.journey{display:flex;flex-direction:column;gap:0;position:relative;}
+.journey::before{content:'';position:absolute;left:27px;top:0;bottom:0;width:2px;background:var(--border);}
+.j-step{display:flex;gap:24px;padding:28px 0;position:relative;}
+.j-num{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;position:relative;z-index:1;}
+.j-num.client{background:var(--ink);color:#fff;}
+.j-num.kigo{background:var(--gold);color:#fff;}
+.j-num.fora-n{background:var(--green);color:#fff;}
+.j-num.future{background:var(--surface);border:2px dashed var(--border);color:var(--muted);}
+.j-body{flex:1;padding-top:8px;}
+.j-body h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.j-body p{font-size:13px;color:var(--ink-mid);line-height:1.75;}
+.j-meta{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center;}
+.j-tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;}
+.j-tag.ct{background:#EDF2FB;color:#1E3A5F;}
+.j-tag.kt{background:var(--gold-light);color:var(--gold-dark);}
+.j-tag.ft{background:var(--green-light);color:var(--green);}
+.j-tag.fut{background:var(--surface);color:var(--muted);border:1px dashed var(--border);}
+.j-time{font-size:11px;color:var(--muted);font-weight:600;}
+.text-box{background:var(--ink);color:#fff;border-radius:14px;padding:40px;}
+.tb-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.text-example{background:rgba(255,255,255,0.07);border-radius:10px;padding:20px 24px;font-size:14px;line-height:1.8;font-style:italic;opacity:0.85;margin-bottom:20px;border-left:3px solid var(--gold);}
+.text-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:560px){.text-fields{grid-template-columns:1fr;}}
+.tf{background:rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;}
+.tf-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:0.5;font-weight:700;margin-bottom:4px;}
+.tf-val{font-size:13px;opacity:0.85;}
+.tf-val em{color:var(--gold);font-style:normal;font-weight:600;}
+.footer{background:var(--ink);color:rgba(255,255,255,0.45);padding:32px;text-align:center;font-size:12px;}
+.footer strong{color:rgba(255,255,255,0.8);}
+@media(max-width:700px){.section{padding:52px 20px;}.form-body,.form-head,.text-box,.example{padding:24px 20px;}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Grant Zamudio · Fora Travel Advisor</div>
+  <h1>Same Hotels.<br><em>Better Experience.</em><br>Zero Extra Cost.</h1>
+  <div class="hero-sub">Complimentary upgrades, daily breakfast, and $100 hotel credits — automatically — at the hotels you already love. No markup. No fees. Just perks.</div>
+  <div class="hero-chips">
+    <span class="chip chip-gold">Same price as booking direct</span>
+    <span class="chip chip-out">Virtuoso · Four Seasons Preferred · Rosewood Elite</span>
+  </div>
+  <button class="hero-cta" onclick="document.getElementById('intake').scrollIntoView({behavior:'smooth'})">Get Started — It is Free</button>
+  <div class="hero-cta-sub">Options in your inbox within 24 hours</div>
+</div>
+
+<div class="sla-band">
+  <span style="font-size:20px;">⚡</span>
+  <span class="sla-text">Send your <strong>destination + dates</strong> &rarr; curated hotel options back to you <strong>within 24 hours</strong></span>
+</div>
+
+<div class="section">
+<div class="inner">
+  <span class="eyebrow">The Process</span>
+  <div class="sec-title">Three Steps. No Hassle.</div>
+  <div class="sec-desc">No account, no membership, no credit card upfront. Just tell me where you are going.</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Tell me where you are going</h4>
+        <p>Fill in the form below with your destination, dates, party size, and budget. Add your hotel loyalty numbers so your points automatically apply to the booking. Takes 90 seconds.</p>
+        <span class="step-tag">90 seconds on your phone</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>I send you a curated booking link</h4>
+        <p>Within 24 hours you receive a secure link with the best hotel options for your trip — including confirmed perks at every eligible property. Live pricing, ready to book. No calls required.</p>
+        <span class="step-tag">Within 24 hours</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>You choose and book directly from the link</h4>
+        <p>Tap the hotel you want, complete payment — done. You show up and the perks are already confirmed in writing. Your loyalty points accrue as normal on every stay.</p>
+        <span class="step-tag">Perks confirmed before you arrive</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section section-alt">
+<div class="inner-wide">
+  <span class="eyebrow">What You Get</span>
+  <div class="sec-title">Every Booking, Automatically.</div>
+  <div class="sec-desc">At any Virtuoso, Four Seasons Preferred, or Rosewood Elite property — at the same rate as booking direct.</div>
+  <div class="perks-grid">
+    <div class="perk"><div class="perk-icon">🍳</div><div class="perk-title">Daily Breakfast</div><div class="perk-desc">Complimentary breakfast for two guests, every morning of your stay</div><div class="perk-val">$60–130 per person per day</div></div>
+    <div class="perk"><div class="perk-icon">🏨</div><div class="perk-title">Room Upgrade</div><div class="perk-desc">Priority upgrade at check-in, above standard loyalty status</div><div class="perk-val">$150–500 per night difference</div></div>
+    <div class="perk"><div class="perk-icon">💳</div><div class="perk-title">$100 Credit</div><div class="perk-desc">Applied to spa, dining, or any hotel charge — per stay, per booking</div><div class="perk-val">$100 cash equivalent</div></div>
+    <div class="perk"><div class="perk-icon">⏰</div><div class="perk-title">Flexible Timing</div><div class="perk-desc">Early check-in and late checkout on request, subject to availability</div><div class="perk-val">No extra charge</div></div>
+    <div class="perk"><div class="perk-icon">⭐</div><div class="perk-title">Points Earned</div><div class="perk-desc">All loyalty points accrue normally — Bonvoy, Hyatt, Hilton Honors</div><div class="perk-val">Zero compromise on status</div></div>
+    <div class="perk"><div class="perk-icon">📞</div><div class="perk-title">Real Human Backup</div><div class="perk-desc">If anything goes wrong at the property, I handle it. No hold music.</div><div class="perk-val">Text me directly</div></div>
+  </div>
+  <div class="example">
+    <div class="ex-eyebrow">Real example — same stay, two ways</div>
+    <div class="ex-hotel">"3 nights at Rosewood Sand Hill, Menlo Park. $650 per night."</div>
+    <div class="ex-cols">
+      <div class="ex-col">
+        <div class="ex-col-title">Booked on Expedia</div>
+        <div class="ex-row"><span class="lbl">Room rate</span><span class="val">$1,950</span></div>
+        <div class="ex-row"><span class="lbl">Breakfast (3 days)</span><span class="val">$450 extra</span></div>
+        <div class="ex-row"><span class="lbl">Property credit</span><span class="val">None</span></div>
+        <div class="ex-row"><span class="lbl">Room upgrade</span><span class="val">None</span></div>
+        <div class="ex-row"><span class="lbl">Total out of pocket</span><span class="val">~$2,400</span></div>
+      </div>
+      <div class="ex-col">
+        <div class="ex-col-title">Booked Through Me</div>
+        <div class="ex-row"><span class="lbl">Room rate</span><span class="val">$1,950</span></div>
+        <div class="ex-row"><span class="lbl">Breakfast (3 days)</span><span class="val gold">Complimentary</span></div>
+        <div class="ex-row"><span class="lbl">$100 property credit</span><span class="val gold">Included</span></div>
+        <div class="ex-row"><span class="lbl">Room upgrade</span><span class="val gold">Priority</span></div>
+        <div class="ex-row"><span class="lbl">Total out of pocket</span><span class="val">$1,950</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section" id="intake">
+<div class="inner">
+  <span class="eyebrow">Get Started</span>
+  <div class="sec-title">Tell Me Where You Are Going.</div>
+  <div class="sec-desc">Takes 90 seconds. Options back to you within 24 hours.</div>
+  <div class="form-wrap">
+    <div class="form-head">
+      <h3>Your Trip Details</h3>
+      <p>No credit card. No commitment. Just tell me where you are headed.</p>
+    </div>
+    <div class="form-body" id="form-content">
+      <div class="form-grid">
+        <div class="form-group"><label>Your Name</label><input type="text" id="f-name" placeholder="First and last name"/></div>
+        <div class="form-group"><label>Best Contact</label><input type="text" id="f-contact" placeholder="Phone or email"/></div>
+        <div class="form-group"><label>Destination</label><input type="text" id="f-dest" placeholder="City, country, or region"/></div>
+        <div class="form-group"><label>Travel Dates</label><input type="text" id="f-dates" placeholder="e.g. Aug 10 to 14"/></div>
+        <div class="form-group"><label>Number of Guests</label><select id="f-guests"><option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4 guests</option><option>5 or more guests</option></select></div>
+        <div class="form-group"><label>Budget Per Night</label><select id="f-budget"><option>Under $300</option><option>$300 to $500</option><option selected>$500 to $800</option><option>$800 to $1,200</option><option>$1,200 or more</option></select></div>
+        <div class="form-group full" style="grid-column:1/-1;padding-top:14px;border-top:1px solid var(--border);margin-top:4px;">
+          <label style="color:var(--gold-dark);font-size:10px;letter-spacing:2px;">&#9654; A Few More Details &mdash; Fewer Questions Later</label>
+        </div>
+        <div class="form-group"><label>Neighborhood or Area</label><input type="text" id="f-area" placeholder="e.g. The Strip, near the Colosseum, canal district"/></div>
+        <div class="form-group"><label>Room Type</label><select id="f-room"><option value="">No preference</option><option>King bed</option><option>Two Queen beds</option><option>Twin beds</option><option>Suite</option><option>Junior Suite</option><option>Villa or Bungalow</option></select></div>
+        <div class="form-group"><label>How do you choose hotels?</label><select id="f-style"><option value="">No preference</option><option>Location above everything</option><option>Brand loyalty (Marriott, Hyatt, etc.)</option><option>Design and vibe</option><option>Pool and amenities</option><option>Best value for the budget</option><option>Most luxurious available</option></select></div>
+        <div class="form-group"><label>Trip Type</label><select id="f-trip" onchange="toggleMulti(this)"><option>Single destination</option><option>Multi-city (e.g. Paris then Rome)</option><option>Road trip with stops</option><option>Not sure yet</option></select></div>
+        <div class="form-group full" id="multi-row" style="display:none;"><label>Your Multi-City Itinerary</label><textarea id="f-multi" placeholder="e.g. Amsterdam 2 nights, then Paris 3 nights, then Barcelona 2 nights" style="min-height:60px;"></textarea></div>
+        <div class="form-group"><label>Travelling with Pets?</label><select id="f-pet"><option>No pets</option><option>Yes &mdash; dog</option><option>Yes &mdash; cat</option><option>Yes &mdash; other</option></select></div>
+        <div class="form-group"><label>Special Requirements</label><input type="text" id="f-special" placeholder="e.g. accessibility, adjoining rooms, crib needed"/></div>
+        <div class="form-group full"><label>Anything else we should know?</label><textarea id="f-notes" placeholder="Specific hotel in mind, special occasion, dietary needs, anything else..."></textarea></div>
+      </div>
+      <div class="loyalty-section">
+        <div class="ls-title"><span>🎁</span><span>Hotel Loyalty Numbers — Add Once, Points Apply Every Time</span></div>
+        <div class="loyalty-grid">
+          <div class="loyalty-field"><label>Marriott Bonvoy</label><input type="text" id="l-marriott" placeholder="Member number"/></div>
+          <div class="loyalty-field"><label>World of Hyatt</label><input type="text" id="l-hyatt" placeholder="Member number"/></div>
+          <div class="loyalty-field"><label>Hilton Honors</label><input type="text" id="l-hilton" placeholder="Member number"/></div>
+          <div class="loyalty-field"><label>IHG or Other</label><input type="text" id="l-other" placeholder="Any other program"/></div>
+        </div>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Send My Trip Details &rarr;</button>
+      <div class="form-note">Your request has been sent to grant.zamudio@fora.travel — you will hear back within 24 hours with curated hotel options and a booking link.<br>No payment until you choose a hotel.</div>
+    </div>
+    <div class="success-state" id="success-state">
+      <div class="s-icon">✅</div>
+      <h3>Got it — I am on it.</h3>
+      <p>You will receive hotel options and a booking link within 24 hours. Check your texts and email.</p>
+      <div class="success-detail" id="success-detail"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="footer">
+  <strong>Grant Zamudio</strong> · Fora Travel Advisor · Los Gatos, CA<br>
+  Affiliated with Fora · Virtuoso Member · Four Seasons Preferred Partner · Rosewood Elite
+</div>
+
+<script>
+function submitForm() {
+  var name = document.getElementById('f-name').value.trim();
+  var contact = document.getElementById('f-contact').value.trim();
+  var dest = document.getElementById('f-dest').value.trim();
+  var dates = document.getElementById('f-dates').value.trim();
+  if (!name || !contact || !dest || !dates) {
+    alert('Please fill in your name, contact, destination, and dates.');
+    return;
+  }
+  var guests = document.getElementById('f-guests').value;
+  var budget = document.getElementById('f-budget').value;
+  var notes = document.getElementById('f-notes').value;
+  var marriott = document.getElementById('l-marriott').value;
+  var hyatt = document.getElementById('l-hyatt').value;
+  var hilton = document.getElementById('l-hilton').value;
+  var other = document.getElementById('l-other').value;
+  var loyalty = [marriott ? 'Bonvoy: ' + marriott : '', hyatt ? 'Hyatt: ' + hyatt : '', hilton ? 'Hilton: ' + hilton : '', other ? 'Other: ' + other : ''].filter(Boolean).join(', ') || 'Not provided';
+  var msg = 'NEW TRIP REQUEST\n\nName: ' + name + '\nContact: ' + contact + '\nDestination: ' + dest + '\nDates: ' + dates + '\nGuests: ' + guests + '\nBudget: ' + budget + '/night\nPreferences: ' + (notes || 'None') + '\n\nLoyalty Numbers: ' + loyalty;
+  var waLink = 'mailto:grant.zamudio@fora.travel?subject=' + encodeURIComponent('New Trip Request — ' + dest + ' | ' + dates) + '&body=' + encodeURIComponent(msg);
+  document.getElementById('form-content').style.display = 'none';
+  var ss = document.getElementById('success-state');
+  ss.style.display = 'block';
+  var detail = document.getElementById('success-detail');
+  detail.innerHTML = '<div class="sd-row"><span class="sd-lbl">Name</span><span class="sd-val">' + name + '</span></div><div class="sd-row"><span class="sd-lbl">Destination</span><span class="sd-val">' + dest + '</span></div><div class="sd-row"><span class="sd-lbl">Dates</span><span class="sd-val">' + dates + '</span></div><div class="sd-row"><span class="sd-lbl">Expected reply</span><span class="sd-val">Within 24 hours</span></div>';
+  window.location.href = waLink;
+}
+</script>
+</body>
+</html>
