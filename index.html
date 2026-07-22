@@ -251,7 +251,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;fon
           <div class="loyalty-field"><label>IHG or Other</label><input type="text" id="l-other" placeholder="Any other program"/></div>
         </div>
       </div>
-      <button class="form-submit" onclick="submitForm()">Send My Trip Details &rarr;</button>
+      <button class="form-submit" onclick="sub()">Send My Trip Details &rarr;</button>
       <div class="form-note">Your request has been sent to grant.zamudio@fora.travel — you will hear back within 24 hours with curated hotel options and a booking link.<br>No payment until you choose a hotel.</div>
     </div>
     <div class="success-state" id="success-state">
@@ -270,32 +270,82 @@ body{background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;fon
   Affiliated with Fora · Virtuoso Member · Four Seasons Preferred Partner · Rosewood Elite
 </div>
 
+
 <script>
-function submitForm() {
-  var name = document.getElementById('f-name').value.trim();
-  var contact = document.getElementById('f-contact').value.trim();
-  var dest = document.getElementById('f-dest').value.trim();
-  var dates = document.getElementById('f-dates').value.trim();
-  if (!name || !contact || !dest || !dates) {
-    alert('Please fill in your name, contact, destination, and dates.');
-    return;
-  }
-  var guests = document.getElementById('f-guests').value;
-  var budget = document.getElementById('f-budget').value;
-  var notes = document.getElementById('f-notes').value;
-  var marriott = document.getElementById('l-marriott').value;
-  var hyatt = document.getElementById('l-hyatt').value;
-  var hilton = document.getElementById('l-hilton').value;
-  var other = document.getElementById('l-other').value;
-  var loyalty = [marriott ? 'Bonvoy: ' + marriott : '', hyatt ? 'Hyatt: ' + hyatt : '', hilton ? 'Hilton: ' + hilton : '', other ? 'Other: ' + other : ''].filter(Boolean).join(', ') || 'Not provided';
-  var msg = 'NEW TRIP REQUEST\n\nName: ' + name + '\nContact: ' + contact + '\nDestination: ' + dest + '\nDates: ' + dates + '\nGuests: ' + guests + '\nBudget: ' + budget + '/night\nPreferences: ' + (notes || 'None') + '\n\nLoyalty Numbers: ' + loyalty;
-  var waLink = 'mailto:grant.zamudio@fora.travel?subject=' + encodeURIComponent('New Trip Request — ' + dest + ' | ' + dates) + '&body=' + encodeURIComponent(msg);
-  document.getElementById('form-content').style.display = 'none';
-  var ss = document.getElementById('success-state');
-  ss.style.display = 'block';
-  var detail = document.getElementById('success-detail');
-  detail.innerHTML = '<div class="sd-row"><span class="sd-lbl">Name</span><span class="sd-val">' + name + '</span></div><div class="sd-row"><span class="sd-lbl">Destination</span><span class="sd-val">' + dest + '</span></div><div class="sd-row"><span class="sd-lbl">Dates</span><span class="sd-val">' + dates + '</span></div><div class="sd-row"><span class="sd-lbl">Expected reply</span><span class="sd-val">Within 24 hours</span></div>';
-  window.location.href = waLink;
+function toggleMulti(sel){
+  var row=document.getElementById('multi-row');
+  if(row) row.style.display=sel.value==='Multi-city (e.g. Paris then Rome)'?'flex':'none';
+}
+function sub(){
+  var name=document.getElementById('f-name').value.trim();
+  var contact=document.getElementById('f-contact').value.trim();
+  var dest=document.getElementById('f-dest').value.trim();
+  var dates=document.getElementById('f-dates').value.trim();
+  if(!name||!contact||!dest||!dates){alert('Please fill in your name, contact, destination, and dates.');return;}
+
+  var g=document.getElementById('f-guests').value;
+  var b=document.getElementById('f-budget').value;
+  var area=document.getElementById('f-area')?document.getElementById('f-area').value:'';
+  var room=document.getElementById('f-room')?document.getElementById('f-room').value:'';
+  var style2=document.getElementById('f-style')?document.getElementById('f-style').value:'';
+  var trip=document.getElementById('f-trip')?document.getElementById('f-trip').value:'Single destination';
+  var multi=document.getElementById('f-multi')?document.getElementById('f-multi').value:'';
+  var pet=document.getElementById('f-pet')?document.getElementById('f-pet').value:'No pets';
+  var special=document.getElementById('f-special')?document.getElementById('f-special').value:'';
+  var notes=document.getElementById('f-notes')?document.getElementById('f-notes').value:'';
+  var lm=document.getElementById('l-marriott').value;
+  var lh=document.getElementById('l-hyatt').value;
+  var lhi=document.getElementById('l-hilton').value;
+  var lo=document.getElementById('l-other').value;
+
+  var loyalty=[lm?'Bonvoy: '+lm:'',lh?'Hyatt: '+lh:'',lhi?'Hilton: '+lhi:'',lo?'Other: '+lo:''].filter(Boolean).join(', ')||'Not provided';
+
+  var btn=document.querySelector('.form-submit');
+  btn.textContent='Sending...';
+  btn.disabled=true;
+
+  fetch('https://formspree.io/f/xzdnvwrr',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      name:name,
+      contact:contact,
+      destination:dest,
+      dates:dates,
+      guests:g,
+      budget:b,
+      area:area||'Flexible',
+      room_type:room||'No preference',
+      hotel_style:style2||'No preference',
+      trip_type:trip,
+      multi_city:multi||'N/A',
+      pets:pet,
+      special_requirements:special||'None',
+      notes:notes||'None',
+      loyalty_numbers:loyalty
+    })
+  })
+  .then(function(r){return r.json();})
+  .then(function(data){
+    if(data.ok){
+      document.getElementById('form-content').style.display='none';
+      document.getElementById('success-state').style.display='block';
+      document.getElementById('success-detail').innerHTML=
+        '<div class="sdr"><span class="sl">Name</span><span class="sv">'+name+'</span></div>'+
+        '<div class="sdr"><span class="sl">Destination</span><span class="sv">'+dest+'</span></div>'+
+        '<div class="sdr"><span class="sl">Dates</span><span class="sv">'+dates+'</span></div>'+
+        '<div class="sdr"><span class="sl">Expected reply</span><span class="sv">Within 24 hours</span></div>';
+    } else {
+      btn.textContent='Send My Trip Details →';
+      btn.disabled=false;
+      alert('Something went wrong. Please try again.');
+    }
+  })
+  .catch(function(){
+    btn.textContent='Send My Trip Details →';
+    btn.disabled=false;
+    alert('Something went wrong. Please try again.');
+  });
 }
 </script>
 </body>
